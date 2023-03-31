@@ -28,7 +28,7 @@ passport.use(
       protocol: 'https://',
       disableRequestedAuthnContext: true,
       callbackUrl:
-        'https://1030-2401-4900-1ca9-ea68-2361-9073-c00-54a0.in.ngrok.io/api/auth/saml/callback',
+        'https://todo-server-mu.vercel.app/api/auth/saml/callback',
       cert: GOOGLE_CRET,
       issuer: 'TEST_SAML',
       passReqToCallback: true,
