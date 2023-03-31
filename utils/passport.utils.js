@@ -1,4 +1,9 @@
 exports.authUser = (req, accessToken, refreshToken, profile, done) => {
-  console.log({ profile });
+  return done(null, { profile, accessToken });
+};
+
+exports.authUserSaml = (req, profile, done) => {
+  console.log('authUserSaml')
+  console.log(profile, req);
   return done(null, profile);
 };
