@@ -1,17 +1,18 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-router.get(
-  '/google',
-  passport.authenticate('google', { scope: ['email', 'profile'] })
-);
+// router.get(
+//   '/google',
+//   passport.authenticate('google', { scope: ['email', 'profile'] })
+// );
 
 router.get(
   '/saml',
-  passport.authenticate('saml', {
-    failureRedirect: '/api/auth/failure',
-    failureFlash: true,
-  })
+  console.log('get saml') ||
+    passport.authenticate('saml', {
+      failureRedirect: '/api/auth/failure',
+      failureFlash: true,
+    })
 );
 
 router.get('/failure', (req, res) => {
