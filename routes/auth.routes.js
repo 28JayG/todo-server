@@ -1,42 +1,31 @@
 const router = require('express').Router();
 const passport = require('passport');
-
-// router.get(
-//   '/google',
-//   passport.authenticate('google', { scope: ['email', 'profile'] })
-// );
+const bodyPraser = require('body-parser');
 
 router.get(
   '/saml',
-  console.log('get saml') ||
-    passport.authenticate('saml', {
-      failureRedirect: '/api/auth/failure',
-      failureFlash: true,
-    })
+  passport.authenticate('saml', {
+    failureRedirect: '/api/auth/failure',
+    failureFlash: true,
+  })
 );
 
 router.get('/failure', (req, res) => {
   return res.status(401).json({ success: false });
 });
 
-router.get(
-  '/google/callback',
-  passport.authenticate('google', {
+router.post(
+  '/saml/callback',
+  bodyPraser.urlencoded({ extended: false }),
+  passport.authenticate('saml', {
     failureRedirect: '/api/auth/failure',
+    failureFlash: true,
   }),
   (req, res) => {
     if (req.isAuthenticated())
-      return res.redirect(
-        `http://localhost:3000/profile?token=${req.user.accessToken}`
-      );
+      return res.redirect('http://localhost:3000/profile');
+    return res.redirect('http://localhost:3000/login');
   }
 );
-
-router.post('/saml/callback', (req, res) => {
-  if (req.isAuthenticated())
-    return res.redirect(`http://localhost:3000/profile`);
-
-  return res.redirect(`http://localhost:3000/login`);
-});
 
 module.exports = router;

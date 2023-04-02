@@ -3,7 +3,7 @@ exports.authUser = (req, accessToken, refreshToken, profile, done) => {
 };
 
 exports.authUserSaml = (req, profile, done) => {
-  console.log('authUserSaml')
-  console.log(profile, req);
+  console.log('authUserSaml');
+  console.log(profile);
   return done(null, profile);
 };
