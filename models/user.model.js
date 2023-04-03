@@ -5,10 +5,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'User must have a firstName'],
   },
-  userId: {
-    type: String,
-    required: true,
-  },
   lastName: String,
   email: String,
   profileImageUrl: String,
