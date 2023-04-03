@@ -32,3 +32,4 @@ exports.GOOGLE_CRET =
 exports.CLIENT_SUCCESS_URL = `${process.env.CLIENT_URL}/profile`;
 exports.CLIENT_FAILURE_URL = `${process.env.CLIENT_URL}/login`;
 exports.SERVER_URL = process.env.SERVER_URL;
+exports.JWT_SECRET = process.env.JWT_SECRET;

@@ -8,6 +8,7 @@ const passport = require('passport');
 const globalErrorHandler = require('./controller/error.controller');
 const { SESSION_SECRET } = require('./constants/config');
 const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
 
 // initialize express app
 const app = express();
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
 
 app.use(globalErrorHandler);
 
