@@ -5,10 +5,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'User must have a firstName'],
   },
+  userId: {
+    type: String,
+    required: true,
+  },
   lastName: String,
   email: String,
-  phone: String,
-  phoneVerified: { type: Boolean, default: false },
+  profileImageUrl: String,
+  lastLogin: Date,
 });
 
 const User = mongoose.model('User', userSchema);

@@ -2,13 +2,17 @@ const passport = require('passport');
 const SamlStrategy = require('passport-saml').Strategy;
 
 const { authUserSaml } = require('./utils/passport.utils');
-const { GOOGLE_CRET, GOOGLE_SSO_URL } = require('./constants/config');
+const {
+  GOOGLE_CRET,
+  GOOGLE_SSO_URL,
+  SERVER_URL,
+} = require('./constants/config');
 
 passport.use(
   new SamlStrategy(
     {
       disableRequestedAuthnContext: true,
-      callbackUrl: 'https://todo-server-mu.vercel.app/api/auth/saml/callback',
+      callbackUrl: `${SERVER_URL}/api/auth/saml/callback`,
       cert: GOOGLE_CRET,
       issuer: 'TEST_SAML',
       passReqToCallback: true,
@@ -17,7 +21,6 @@ passport.use(
     authUserSaml
   )
 );
-
 
 passport.serializeUser((user, done) => {
   done(null, user);
